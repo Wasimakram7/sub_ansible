@@ -1,6 +1,6 @@
 ---
 - name: install lamp server on ubuntu
-  hosts: all
+  hosts: redhat
   become: yes
   tasks: 
     - name: install apache surver
@@ -16,10 +16,15 @@
       ansible.buildin.yam:
         name: php
         state: present
+      notify:  
+      - restart apache2  
     - name: copy info.php 
       ansible.builtin.copy:
         src: info.php
         dest: /var/www/html/info.php
+      notify:  
+      - restart apache2  
+  handlers:      
     - name: restart apache
       ansible.builtin.systemd:
         name: httpd
