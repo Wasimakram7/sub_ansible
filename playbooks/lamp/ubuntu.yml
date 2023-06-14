@@ -2,7 +2,7 @@
 - name: install lamp server on ubuntu
   hosts: all
   become: yes
-  tesks:
+  tasks:
    - name: update packages and install apcahi
      ansible.builtin.apt:
        name: apache2
